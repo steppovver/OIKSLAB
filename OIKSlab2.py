@@ -1,4 +1,5 @@
 # Rubens_COOL
+from getch import pause
 from openpyxl import Workbook
 from openpyxl.styles import Font
 wb = Workbook()
@@ -19,24 +20,29 @@ def lineLetter(line):
 
 fin = open('text.txt', 'r')
 lengthF = len(fin.read())
-fin = open('text.txt', 'r')
-lengthF = lengthF // 24
-for numLine in range(1, 24):
-    cntLater = [0] * 36
-    if numLine == 23:
-        line = fin.read()
-    else:
-        line = fin.read(lengthF)
-        while line[-1] != ' ':
-            line = line + fin.read(1)
-    print(numLine, end=". ")
-    cntLater = lineLetter(line)
-    print()
-    print(cntLater)
-    ws.cell(row=numLine+1, column=1, value=numLine).font = Font(bold=True, color='DC143C')
-    for i in range(len(cntLater)):
-        ws.cell(row=numLine+1, column=i + 2, value=cntLater[i][1])
-for i in range(36):
-    ws.cell(row=1, column=i+2, value=cntLater[i][0]).font = Font(bold=True, color='DC143C')
-wb.save('result.xlsx')
-input('нажмите Enter для выхода...')
+cntword = len(fin.read().split())
+if cntword < 23:
+    print('Недостаточное количество слов. Необходимо 23 слова как минимум')
+    pause()
+else:
+    fin = open('text.txt', 'r')
+    lengthF = lengthF // 24
+    for numLine in range(1, 24):
+        cntLater = [0] * 36
+        if numLine == 23:
+            line = fin.read()
+        else:
+            line = fin.read(lengthF)
+            while line[-1] != ' ':
+                line = line + fin.read(1)
+        print(numLine, end=". ")
+        cntLater = lineLetter(line)
+        print()
+        print(cntLater)
+        ws.cell(row=numLine+1, column=1, value=numLine).font = Font(bold=True, color='DC143C')
+        for i in range(len(cntLater)):
+            ws.cell(row=numLine+1, column=i + 2, value=cntLater[i][1])
+    for i in range(36):
+        ws.cell(row=1, column=i+2, value=cntLater[i][0]).font = Font(bold=True, color='DC143C')
+    wb.save('result.xlsx')
+    pause()
