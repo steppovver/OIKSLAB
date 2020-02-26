@@ -18,23 +18,27 @@ def lineLetter(line):
     return a
 
 
-fin = open('text.txt', 'r')
-lengthF = len(fin.read())
-cntword = len(fin.read().split())
+choise = int(input('Нажмите 1 чтобы ввести текст в консоль \nНажмите 2 чтобы достать текст из файла text.txt \n'))
+fin = open('text.txt', 'r', encoding='utf8').read()
+lengthF = len(fin)
+cntword = len(fin.split())
+print(cntword)
 if cntword < 23:
     print('Недостаточное количество слов. Необходимо 23 слова как минимум')
     pause()
 else:
-    fin = open('text.txt', 'r')
     lengthF = lengthF // 24
+    numLetter = 0
     for numLine in range(1, 24):
         cntLater = [0] * 36
         if numLine == 23:
-            line = fin.read()
+            line = fin[numLetter:]
         else:
-            line = fin.read(lengthF)
+            line = fin[numLetter:lengthF*numLine]
+            numLetter = lengthF*numLine + 1
             while line[-1] != ' ':
-                line = line + fin.read(1)
+                line = line + fin[numLetter]
+                numLetter += 1
         print(numLine, end=". ")
         cntLater = lineLetter(line)
         print()
