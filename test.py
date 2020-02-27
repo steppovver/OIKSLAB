@@ -1,2 +1,9 @@
-fin = open('text.txt', 'r').read()
-print(fin[5:])
+print("Enter/Paste your content. Ctrl-D or Ctrl-Z ( windows ) to save it.")
+contents = ''
+while True:
+    try:
+        line = input()
+    except EOFError:
+        break
+    contents = contents + line
+print(contents)

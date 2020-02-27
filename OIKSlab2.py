@@ -18,8 +18,18 @@ def lineLetter(line):
     return a
 
 
-# choise = int(input('Нажмите 1 чтобы ввести текст в консоль \nНажмите 2 чтобы достать текст из файла text.txt \n'))
-fin = open('text.txt', 'r', encoding='UTF-8').read()
+choise = int(input('Нажмите 1 чтобы ввести текст в консоль \nНажмите 2 чтобы достать текст из файла text.txt \n'))
+if choise == 1:
+    print("Enter/Paste your content. Ctrl-D or Ctrl-Z ( windows ) to save it.")
+    fin = ''
+    while True:
+        try:
+            line = input()
+        except EOFError:
+            break
+        fin = fin + line
+else:
+    fin = open('text.txt', 'r', encoding='UTF-8').read()
 lengthF = len(fin)
 cntword = len(fin.split())
 print(cntword)
