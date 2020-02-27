@@ -18,8 +18,8 @@ def lineLetter(line):
     return a
 
 
-choise = int(input('Нажмите 1 чтобы ввести текст в консоль \nНажмите 2 чтобы достать текст из файла text.txt \n'))
-fin = open('text.txt', 'r', encoding='utf8').read()
+# choise = int(input('Нажмите 1 чтобы ввести текст в консоль \nНажмите 2 чтобы достать текст из файла text.txt \n'))
+fin = open('text.txt', 'r', encoding='UTF-8').read()
 lengthF = len(fin)
 cntword = len(fin.split())
 print(cntword)
@@ -34,9 +34,9 @@ else:
         if numLine == 23:
             line = fin[numLetter:]
         else:
-            line = fin[numLetter:lengthF*numLine]
-            numLetter = lengthF*numLine + 1
-            while line[-1] != ' ':
+            line = fin[numLetter:lengthF+numLetter]
+            numLetter = lengthF+numLetter
+            while ord(line[-1]) != 32:
                 line = line + fin[numLetter]
                 numLetter += 1
         print(numLine, end=". ")
