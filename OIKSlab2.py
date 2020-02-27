@@ -29,7 +29,7 @@ if choise == 1:
             break
         fin = fin + line
 else:
-    fin = open('text.txt', 'r', encoding='UTF-8').read()
+    fin = open('text.txt', 'r', encoding='Windows-1251').read()
 lengthF = len(fin)
 cntword = len(fin.split())
 print(cntword)
